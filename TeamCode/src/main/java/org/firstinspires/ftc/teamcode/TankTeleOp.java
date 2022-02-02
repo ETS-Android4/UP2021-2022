@@ -15,8 +15,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
         private MecanumRobot rb = new MecanumRobot();
 
-        double liftmotorStartingPosition = rb.liftmotor.getCurrentPosition();
-        double servoBoxStartingPosition = rb.boxServo.getPosition();
+        double liftmotorStartingPosition;
+        double servoBoxStartingPosition;
 
         double frontLeftPower;
         double backLeftPower;
@@ -29,6 +29,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
             rb.init(hardwareMap, null);
 
+            double liftmotorStartingPosition = rb.liftmotor.getCurrentPosition();
+            double servoBoxStartingPosition = rb.boxServo.getPosition();
+
 
             telemetry.addData("Status", "Initialized");
         }
@@ -37,6 +40,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
         public void start() {
             runtime.reset();
             rb.resetEncoder(rb.liftmotor);
+
         }
 
         @Override
@@ -87,7 +91,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
         private void servoBox() {
             if(gamepad2.dpad_down) {
                 rb.boxServo.setPosition(servoBoxStartingPosition - 0.6);
-
             }
             if(gamepad2.dpad_right) {
                 rb.boxServo.setPosition(servoBoxStartingPosition - 0.25);
